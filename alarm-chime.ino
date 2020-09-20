@@ -24,7 +24,7 @@ const int snoozeInterval = 600; //10 minutes snooze
 
 //Motor parameters
 const short MAX_PWM = 102; // 40% (of 255) is max PWM to keep the motor from getting too hot at stall current
-const int CLOCKWISE = 0;
+const int COUNTER_CLOCKWISE = 1;
 
 
 // The fast PWM affects millis() and delay(), making them also 64 times faster than "real-time"
@@ -39,8 +39,8 @@ void setup(){
   pinMode(dirPin, OUTPUT);
   pinMode(pwmPin, OUTPUT);
 
-  // Set up motor to spin clockwise
-  digitalWrite(dirPin, CLOCKWISE);
+  // Set up motor to spin counter-clockwise
+  digitalWrite(dirPin, COUNTER_CLOCKWISE);
 }
 
 void loop(){
@@ -82,7 +82,7 @@ void soundAlarm(){
 void pealBell(){
   // Ring the bell once.
   analogWrite(pwmPin, MAX_PWM);
-  delay(6400); // write the torque command for 100 ms (adjusted x64 for fast PWM)
+  delay(3200); // write the torque command for 50 ms (adjusted x64 for fast PWM)
   analogWrite(pwmPin, 0);
 }
 
@@ -101,4 +101,3 @@ void wait(int seconds){
     }
   }
 }
-
